@@ -8,14 +8,14 @@ import (
 	"gorm.io/gorm"
 )
 
-func LoadDb(c *config.Config) *gorm.DB {
+func LoadDb(c *config.DbConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
-		c.Db.DB_HOST, c.Db.DB_USER, c.Db.DB_PASSWORD, c.Db.DB_NAME, c.Db.DB_PORT, c.Db.DB_SSLMODE,
+		c.DB_HOST, c.DB_USER, c.DB_PASSWORD, c.DB_NAME, c.DB_PORT, c.DB_SSLMODE,
 	)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
-	return db
+	return db, nil
 }
