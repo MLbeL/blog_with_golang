@@ -31,6 +31,10 @@ func (au AuthHandler) LoginHandler() http.HandlerFunc {
 
 func (au AuthHandler) RegisterHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		_, err := request.Resp[Register](&w, r)
+		if err != nil {
+			return
+		}
 
 	}
 }
