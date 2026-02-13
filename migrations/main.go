@@ -5,7 +5,7 @@ import (
 
 	"github.com/MLbeL/blog_with_golang/config"
 	"github.com/MLbeL/blog_with_golang/db"
-	"github.com/MLbeL/blog_with_golang/models"
+	"github.com/MLbeL/blog_with_golang/db/models"
 )
 
 func main() {
