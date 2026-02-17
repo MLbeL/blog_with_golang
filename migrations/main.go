@@ -14,5 +14,5 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to load database: %v", err)
 	}
-	DB.AutoMigrate(&models.User{}, &models.Post{}, &models.Comment{})
+	DB.AutoMigrate(&models.User{}, &models.Post{}, &models.Comment{}, &models.RefreshToken{})
 }

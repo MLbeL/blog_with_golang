@@ -17,7 +17,8 @@ type DbConfig struct {
 }
 
 type Config struct {
-	Db *DbConfig
+	Db        *DbConfig
+	JWTSecret string
 }
 
 func GetConfig() *Config {
@@ -28,7 +29,7 @@ func GetConfig() *Config {
 	}
 
 	return &Config{
-		&DbConfig{
+		Db: &DbConfig{
 			DB_HOST:     os.Getenv("DB_HOST"),
 			DB_USER:     os.Getenv("DB_USER"),
 			DB_PASSWORD: os.Getenv("DB_PASSWORD"),
@@ -36,5 +37,6 @@ func GetConfig() *Config {
 			DB_PORT:     os.Getenv("DB_PORT"),
 			DB_SSLMODE:  os.Getenv("DB_SSLMODE"),
 		},
+		JWTSecret: os.Getenv("SECRET_JWT"),
 	}
 }
