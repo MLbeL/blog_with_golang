@@ -13,4 +13,8 @@ type Register struct {
 	Name     string `json:"name" validate:"min=2"`
 }
 
+type RefreshToken struct {
+	Refreshtoken string
+}
+
 const RefreshTokenTTL = 30 * 24 * time.Hour

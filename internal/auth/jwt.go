@@ -9,13 +9,15 @@ import (
 )
 
 type AccessToken struct {
-	UserID uint `json:"user_id"`
+	UserID uint   `json:"user_id"`
+	Email  string `json:"email"`
 	jwt.RegisteredClaims
 }
 
-func GenerateAccessToken(userID uint, secret string) (string, error) {
+func GenerateAccessToken(userID uint, secret string, email string) (string, error) {
 	access := AccessToken{
 		UserID: userID,
+		Email:  email,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(15 * time.Minute)),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
