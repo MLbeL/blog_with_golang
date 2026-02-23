@@ -30,7 +30,7 @@ func main() {
 	postRepo := &db.PostRepo{DB: DB}
 
 	auth.NewHandlerFuncAuth(router, &auth.AuthHandlerDeps{UserRepo: userRepo, Secret: secret})
-	posts.NewHandlerPosts(router, &posts.PostsHandlerDeps{PostRepo: postRepo})
+	posts.NewHandlerPosts(router, &posts.PostsHandlerDeps{PostRepo: postRepo, UserRepo: userRepo}, secret)
 	log.Println("Loaded a handler-funcs")
 	server := http.Server{
 		Addr:    ":8080",

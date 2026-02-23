@@ -1,5 +1,8 @@
 package db
 
+import "errors"
+
 var (
-	ErrPostNotFound error
+	ErrPostNotFound   = errors.New("post not found")
+	ErrUserIDNotFound = errors.New("user id not found")
 )
