@@ -7,6 +7,7 @@ import (
 	"github.com/MLbeL/blog_with_golang/config"
 	"github.com/MLbeL/blog_with_golang/db"
 	"github.com/MLbeL/blog_with_golang/internal/auth"
+	"github.com/MLbeL/blog_with_golang/internal/posts"
 )
 
 func main() {
@@ -26,7 +27,10 @@ func main() {
 	}
 
 	userRepo := &db.UserRepo{DB: DB}
+	postRepo := &db.PostRepo{DB: DB}
+
 	auth.NewHandlerFuncAuth(router, &auth.AuthHandlerDeps{UserRepo: userRepo, Secret: secret})
+	posts.NewHandlerPosts(router, &posts.PostsHandlerDeps{PostRepo: postRepo})
 	log.Println("Loaded a handler-funcs")
 	server := http.Server{
 		Addr:    ":8080",
