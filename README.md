@@ -38,3 +38,42 @@ This project focuses on:
 - Working with relational databases (PostgreSQL)
 - Using Docker for local development and containerized environments
 - Preparing the foundation for event-driven architecture with Kafka
+
+---
+
+## How to Run
+
+1. Create a `.env` file in the project root and set required variables (example):
+
+	```env
+	DB_HOST=postgres
+	DB_PORT=5432
+	DB_USER=postgres
+	DB_PASSWORD=postgres
+	DB_NAME=blog
+	DB_SSLMODE=disable
+	SECRET_JWT=supersecret
+	```
+
+2. Build and start the application with Docker Compose:
+
+	```bash
+	docker compose up --build
+	```
+
+	This will start:
+	- `postgres` – PostgreSQL database
+	- `migrate` – one‑time service that runs DB migrations and exits
+	- `blog` – main Go application
+
+3. The API will be available at:
+
+	```
+	http://localhost:8080
+	```
+
+4. To rerun only migrations (for example, after changing models):
+
+	```bash
+	docker compose run --rm migrate
+	```
